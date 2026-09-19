@@ -95,13 +95,14 @@ fine — pushing to GitHub builds it for you regardless.
 
 ## Tradesman CRM demo
 
-`tools/tradesman-crm/index.html` is a self-contained, working demo of
-the CRM: sample clients and jobs, add/edit/delete, a few summary stats.
-It runs entirely client-side against `localStorage` (seeded on first
-visit, "Reset demo data" reseeds it) — there's no server and nothing
-typed into it goes anywhere. It shares the site's design tokens via
-`css/style.css`, plus its own `crm.css`/`crm.js`. `scripts/build.js`
-copies the whole `tools/` folder into `dist/` untouched on every build.
+`tools/tradesman-crm/index.html` is a landing page that embeds
+[TradeFlow](https://github.com/RNDnick/trade-crm) — the actual CRM,
+seeded with a fake business — live via an iframe, inside a simple phone
+frame (`crm.css`). It's the real app, not a lookalike, so there's
+nothing to keep in sync here beyond the URL: any update pushed to the
+`trade-crm` repo's own GitHub Pages appears here automatically.
+`scripts/build.js` copies the whole `tools/` folder into `dist/`
+untouched on every build.
 
 ## SEO
 

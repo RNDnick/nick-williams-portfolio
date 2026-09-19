@@ -28,7 +28,12 @@
 
 .crm-intro {
   max-width: 62ch;
-  margin-bottom: 32px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+.crm-intro .back-link,
+.crm-intro .eyebrow {
+  display: block;
 }
 .crm-intro h1 {
   font-size: 32px;
@@ -36,241 +41,45 @@
 }
 .crm-intro .lede {
   font-size: 15.5px;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
 }
 
-.crm-stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-bottom: 32px;
-}
-.crm-stat {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 18px 20px;
-}
-.crm-stat-value {
-  display: block;
-  font-family: var(--font-head);
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--text);
-}
-.crm-stat-label {
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.crm-app {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 20px;
-  align-items: start;
-}
-
-.crm-clients, .crm-jobs {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 20px;
-}
-
-.crm-clients-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 14px;
-}
-.crm-clients-head h2 { font-size: 16px; }
-
-.client-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.crm-frame-wrap {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  align-items: center;
 }
 
-.client-row {
+.device-frame {
   width: 100%;
-  text-align: left;
-  background: none;
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm);
-  padding: 10px 12px;
-  cursor: pointer;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 2px 8px;
-  font-family: var(--font-body);
-  transition: background-color 0.15s ease, border-color 0.15s ease;
-}
-.client-row:hover { background: var(--bg); }
-.client-row.selected {
-  background: var(--bg);
-  border-color: var(--accent);
-}
-.client-row-name {
-  font-weight: 600;
-  color: var(--text);
-  font-size: 14.5px;
-}
-.client-row-company {
-  grid-column: 1 / 2;
-  font-size: 12.5px;
-  color: var(--text-muted);
-}
-.client-row-count {
-  grid-row: 1 / 3;
-  grid-column: 2 / 3;
-  align-self: center;
-  font-size: 12px;
-  color: var(--text-muted);
-  white-space: nowrap;
-}
-
-.jobs-panel-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 18px;
-}
-.jobs-panel-head h3 { font-size: 19px; margin-bottom: 4px; }
-.client-meta { font-size: 13px; color: var(--text-muted); }
-.jobs-panel-actions { display: flex; gap: 10px; flex-shrink: 0; }
-
-.job-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.job-row {
-  border-top: 1px solid var(--border);
-  padding: 14px 0;
-}
-.job-row:first-child { border-top: none; }
-.job-row-main {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 6px;
-}
-.job-title { font-weight: 500; color: var(--text); font-size: 14.5px; }
-.job-row-meta {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-size: 13px;
-  color: var(--text-muted);
-}
-.job-notes {
-  margin-top: 6px;
-  font-size: 13.5px;
-  color: var(--text-muted);
-  max-width: 60ch;
-}
-
-.text-link {
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--accent);
-  cursor: pointer;
-}
-.text-link:hover { color: var(--accent-dark); }
-.text-link-danger { color: var(--text-muted); }
-.text-link-danger:hover { color: #B3261E; }
-
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 3px 10px;
-  border-radius: 999px;
-  font-size: 11.5px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-}
-.status-quoted { background: var(--placeholder-bg); color: var(--text-secondary); }
-.status-scheduled { background: var(--placeholder-bg); color: var(--text); border: 1px solid var(--border); }
-.status-in-progress { background: rgba(194, 84, 10, 0.12); color: var(--accent-dark); }
-.status-invoiced { background: transparent; color: var(--accent-dark); border: 1px solid var(--accent); }
-.status-paid { background: var(--text); color: #fff; }
-
-.crm-empty {
-  color: var(--text-muted);
-  font-size: 14.5px;
-  padding: 12px 0;
-}
-
-/* Dialogs */
-.crm-dialog {
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  width: min(440px, 90vw);
+  max-width: 420px;
+  height: 850px;
+  background: var(--surface);
+  border: 10px solid var(--text);
+  border-radius: 36px;
+  overflow: hidden;
   box-shadow: 0 24px 48px -20px rgba(23, 24, 26, 0.35);
 }
-.crm-dialog::backdrop {
-  background: rgba(23, 24, 26, 0.45);
-}
-.crm-dialog h2 {
-  font-size: 20px;
-  margin-bottom: 18px;
-}
-.crm-dialog form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.crm-dialog label {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--text-secondary);
-}
-.crm-dialog .optional {
-  font-weight: 400;
-  color: var(--text-muted);
-}
-.crm-dialog input,
-.crm-dialog select,
-.crm-dialog textarea {
-  font-family: var(--font-body);
-  font-size: 14.5px;
-  color: var(--text);
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 9px 12px;
-}
-.crm-dialog input:focus,
-.crm-dialog select:focus,
-.crm-dialog textarea:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 1px;
-}
-.dialog-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 6px;
+.device-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
 }
 
-@media (max-width: 860px) {
-  .crm-stats { grid-template-columns: repeat(2, 1fr); }
-  .crm-app { grid-template-columns: 1fr; }
+.crm-frame-note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+}
+.crm-frame-note a { color: var(--accent); font-weight: 500; }
+.crm-frame-note a:hover { color: var(--accent-dark); }
+
+@media (max-width: 480px) {
+  .device-frame {
+    height: 75vh;
+    border-width: 6px;
+    border-radius: 24px;
+  }
 }
