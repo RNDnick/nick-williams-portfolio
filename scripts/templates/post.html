@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}} — Nick Williams</title>
+<meta name="description" content="{{EXCERPT}}">
+
+<link rel="canonical" href="{{SITE_URL}}/blog/{{SLUG}}.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Nick Williams">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{EXCERPT}}">
+<meta property="og:url" content="{{SITE_URL}}/blog/{{SLUG}}.html">
+<meta property="article:published_time" content="{{DATE_ISO}}">
+<meta property="article:section" content="{{CATEGORY}}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{TITLE}}">
+<meta name="twitter:description" content="{{EXCERPT}}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{TITLE_JSON}}",
+  "description": "{{EXCERPT_JSON}}",
+  "datePublished": "{{DATE_ISO}}",
+  "author": { "@type": "Person", "name": "Nick Williams" },
+  "url": "{{SITE_URL}}/blog/{{SLUG}}.html"
+}
+</script>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="../" class="brand">Nick Williams</a>
+    <ul class="nav-links">
+      <li><a href="../#work">Work</a></li>
+      <li><a href="./">Blog</a></li>
+      <li><a href="../#about">About</a></li>
+    </ul>
+    <div class="nav-right">
+      <a class="btn btn-primary btn-small" href="mailto:hello@example.com">Get in touch</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<article class="post-article">
+  <a href="./" class="back-link">← All posts</a>
+  <p class="post-hero-meta post-meta"><span class="cat">{{CATEGORY}}</span> · {{DATE_DISPLAY}} · {{READ_TIME}} min read</p>
+  <h1>{{TITLE}}</h1>
+  <div class="post-content">
+    {{CONTENT}}
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="copyright">© <span id="year">2026</span> Nick Williams. Built with Claude Code.</p>
+    <ul class="footer-links">
+      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#">X</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="mailto:hello@example.com">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
