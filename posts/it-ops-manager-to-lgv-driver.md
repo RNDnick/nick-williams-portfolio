@@ -22,4 +22,4 @@ The other difference is time. IT gave me long stretches at a desk to think somet
 
 ## Why build in public
 
-I'm not trying to relaunch an IT career through a portfolio site, and I'm not trying to make driving my permanent trade either. I'm trying to see whether the habit — noticing a genuinely annoying process and building a small, free tool to fix it — can become something closer to a business. Posting the tools, and the reasoning behind them, is mostly so I keep being honest with myself about whether that's actually working.
+I'm not trying to relaunch an IT career through a portfolio site, and I'm not trying to make driving my permanent trade either. I'm trying to see whether the habit — noticing a genuinely annoying process and building a small tool to fix it — can become something closer to a business. Posting the tools, and the reasoning behind them, is mostly so I keep being honest with myself about whether that's actually working.

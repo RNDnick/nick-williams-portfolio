@@ -1,6 +1,6 @@
 # Nick Williams — portfolio & blog
 
-Static portfolio/blog site: free tools built from an IT Ops career and life
+Static portfolio/blog site: tools built from an IT Ops career and life
 as an LGV driver, plus a build-log blog. Plain HTML/CSS/JS, no framework,
 no database. The only "build step" is a zero-dependency Node script that
 turns Markdown posts into blog pages — and GitHub Actions runs it for you
