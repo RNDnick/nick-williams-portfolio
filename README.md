@@ -16,6 +16,7 @@ assets/                  Icons, images, CV — see the README in each folder
 posts/*.md               Blog posts (front matter + Markdown)
 scripts/build.js         Builds posts/*.md + index.html into dist/
 scripts/templates/       HTML templates used by build.js
+tools/tradesman-crm/     Live CRM demo (self-contained, own JS/CSS)
 dist/                    Build output (git-ignored, generated on every deploy)
 .github/workflows/       GitHub Actions: builds and deploys to GitHub Pages
 ```
@@ -61,7 +62,9 @@ deploy; don't hand-edit the contents of that block, as it'll be
 overwritten.
 
 Tool cards currently link to `#` — replace each `href="#"` with the
-tool's real URL as it goes live.
+tool's real URL as it goes live. The Tradesman CRM card is the exception:
+it already links to `tools/tradesman-crm/`, a live demo built into this
+site (see below).
 
 ## Local preview
 
@@ -88,6 +91,17 @@ fine — pushing to GitHub builds it for you regardless.
 - [ ] `assets/cv/nick-williams-cv.pdf` — see `assets/cv/README.md`
 - [ ] `assets/images/profile.jpg` — see `assets/images/README.md`
 - [ ] Tool card links in `index.html` — currently `#`, one per tool
+      (except the Tradesman CRM, which links to its live demo)
+
+## Tradesman CRM demo
+
+`tools/tradesman-crm/index.html` is a self-contained, working demo of
+the CRM: sample clients and jobs, add/edit/delete, a few summary stats.
+It runs entirely client-side against `localStorage` (seeded on first
+visit, "Reset demo data" reseeds it) — there's no server and nothing
+typed into it goes anywhere. It shares the site's design tokens via
+`css/style.css`, plus its own `crm.css`/`crm.js`. `scripts/build.js`
+copies the whole `tools/` folder into `dist/` untouched on every build.
 
 ## SEO
 

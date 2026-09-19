@@ -251,7 +251,7 @@ function build() {
   fs.mkdirSync(DIST_DIR, { recursive: true });
 
   // Copy the static parts of the site as-is.
-  for (const entry of ['css', 'js', 'assets']) {
+  for (const entry of ['css', 'js', 'assets', 'tools']) {
     const src = path.join(ROOT, entry);
     if (fs.existsSync(src)) copyRecursive(src, path.join(DIST_DIR, entry));
   }
@@ -315,7 +315,7 @@ function build() {
     `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`
   );
 
-  const staticUrls = [`${SITE_URL}/`, `${SITE_URL}/blog/`];
+  const staticUrls = [`${SITE_URL}/`, `${SITE_URL}/blog/`, `${SITE_URL}/tools/tradesman-crm/`];
   const postUrls = posts.map((p) => `${SITE_URL}/blog/${p.slug}.html`);
   const sitemap = [
     '<?xml version="1.0" encoding="UTF-8"?>',

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tradesman CRM — live demo — Nick Williams</title>
+<meta name="description" content="Try the Tradesman CRM in your browser — add a client, log a job, see how a bespoke CRM built for sole traders actually works.">
+
+<!-- TODO: update once a custom domain is live -->
+<link rel="canonical" href="https://your-domain.example/tools/tradesman-crm/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nick Williams">
+<meta property="og:title" content="Tradesman CRM — live demo">
+<meta property="og:description" content="Try the Tradesman CRM in your browser — add a client, log a job, see how a bespoke CRM built for sole traders actually works.">
+<meta property="og:url" content="https://your-domain.example/tools/tradesman-crm/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tradesman CRM — live demo">
+<meta name="twitter:description" content="Try the Tradesman CRM in your browser — add a client, log a job, see how a bespoke CRM built for sole traders actually works.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="crm.css">
+<link rel="icon" type="image/svg+xml" href="../../assets/icons/favicon.svg">
+</head>
+<body>
+
+<header class="crm-topbar">
+  <div class="wrap crm-topbar-inner">
+    <a href="../../" class="brand">Nick Williams</a>
+    <span class="pill crm-live-pill"><span class="dot"></span>Live demo — nothing here leaves your browser</span>
+    <a class="btn btn-primary btn-small" href="mailto:hello@example.com?subject=Tradesman%20CRM%20enquiry">Enquire →</a>
+  </div>
+</header>
+
+<main class="wrap crm-shell">
+
+  <div class="crm-intro">
+    <a href="../../#work" class="back-link">← Back to the portfolio</a>
+    <span class="eyebrow">Tradesman CRM</span>
+    <h1>See it in action</h1>
+    <p class="lede">A handful of sample clients and jobs are loaded below — add your own, edit them, delete them. It's a real, working interface, just running entirely in this tab against your browser's local storage rather than a server.</p>
+    <button type="button" id="reset-demo-btn" class="btn btn-secondary btn-small">Reset demo data</button>
+  </div>
+
+  <div class="crm-stats">
+    <div class="crm-stat">
+      <span class="crm-stat-value" id="stat-clients">0</span>
+      <span class="crm-stat-label">Active clients</span>
+    </div>
+    <div class="crm-stat">
+      <span class="crm-stat-value" id="stat-open-jobs">0</span>
+      <span class="crm-stat-label">Open jobs</span>
+    </div>
+    <div class="crm-stat">
+      <span class="crm-stat-value" id="stat-pipeline">£0</span>
+      <span class="crm-stat-label">Pipeline value</span>
+    </div>
+    <div class="crm-stat">
+      <span class="crm-stat-value" id="stat-paid-month">£0</span>
+      <span class="crm-stat-label">Paid this month</span>
+    </div>
+  </div>
+
+  <div class="crm-app">
+    <aside class="crm-clients">
+      <div class="crm-clients-head">
+        <h2>Clients</h2>
+        <button type="button" id="add-client-btn" class="btn btn-primary btn-small">+ Add client</button>
+      </div>
+      <ul id="client-list" class="client-list"></ul>
+    </aside>
+
+    <section id="jobs-panel" class="crm-jobs"></section>
+  </div>
+
+</main>
+
+<dialog id="client-dialog" class="crm-dialog">
+  <form id="client-form" method="dialog">
+    <h2 id="client-dialog-title">Add client</h2>
+    <input type="hidden" name="id">
+
+    <label>Name
+      <input type="text" name="name" required>
+    </label>
+    <label>Company <span class="optional">(optional)</span>
+      <input type="text" name="company">
+    </label>
+    <label>Phone
+      <input type="tel" name="phone">
+    </label>
+    <label>Email
+      <input type="email" name="email">
+    </label>
+
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" data-close-dialog>Cancel</button>
+      <button type="submit" class="btn btn-primary">Save client</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="job-dialog" class="crm-dialog">
+  <form id="job-form" method="dialog">
+    <h2 id="job-dialog-title">Add job</h2>
+    <input type="hidden" name="id">
+    <input type="hidden" name="clientId">
+
+    <label>Job title
+      <input type="text" name="title" required>
+    </label>
+    <label>Status
+      <select name="status">
+        <option>Quoted</option>
+        <option>Scheduled</option>
+        <option>In Progress</option>
+        <option>Invoiced</option>
+        <option>Paid</option>
+      </select>
+    </label>
+    <label>Value (£)
+      <input type="number" name="value" min="0" step="1" required>
+    </label>
+    <label>Date
+      <input type="date" name="date" required>
+    </label>
+    <label>Notes <span class="optional">(optional)</span>
+      <textarea name="notes" rows="3"></textarea>
+    </label>
+
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" data-close-dialog>Cancel</button>
+      <button type="submit" class="btn btn-primary">Save job</button>
+    </div>
+  </form>
+</dialog>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="copyright">© <span id="year">2026</span> Nick Williams. Built with Claude Code.</p>
+    <ul class="footer-links">
+      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#">X</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="mailto:hello@example.com">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script src="crm.js"></script>
+</body>
+</html>
