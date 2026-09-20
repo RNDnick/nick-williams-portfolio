@@ -1,0 +1,275 @@
+/* Working Time Directive Calculator — extends the shared design tokens from css/style.css */
+
+.wtd-shell {
+  padding: 40px 24px 96px;
+}
+
+.wtd-intro {
+  max-width: 70ch;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+.wtd-intro .back-link,
+.wtd-intro .eyebrow {
+  display: block;
+}
+.wtd-intro h1 {
+  font-size: 32px;
+  margin: 10px 0 14px;
+}
+.wtd-intro .lede {
+  font-size: 15.5px;
+  margin: 0 auto;
+}
+
+.wtd-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  max-width: 1000px;
+  margin: 0 auto 20px;
+}
+.wtd-stat {
+  display: block;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+.wtd-stat:hover {
+  border-color: var(--text-muted);
+  transform: translateY(-1px);
+}
+.wtd-stat.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(194, 84, 10, 0.18);
+}
+.wtd-stat.warn.active {
+  border-color: #B45309;
+  box-shadow: 0 0 0 2px rgba(180, 83, 9, 0.18);
+}
+.wtd-stat.bad.active {
+  border-color: #B3261E;
+  box-shadow: 0 0 0 2px rgba(179, 38, 30, 0.18);
+}
+.wtd-stat-value {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.wtd-stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.wtd-stat.warn .wtd-stat-value { color: #B45309; }
+.wtd-stat.bad .wtd-stat-value { color: #B3261E; }
+.wtd-stat-value.bad-text { color: #B3261E; }
+
+.wtd-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: 0 auto 20px;
+}
+.wtd-ref-period label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.wtd-ref-period select {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+}
+.wtd-toolbar-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.wtd-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  max-width: 1000px;
+  margin: 0 auto 24px;
+}
+
+.wtd-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.wtd-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.wtd-field-group.full { grid-column: 1 / -1; }
+.wtd-field-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.wtd-field-group input {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+.wtd-field-group input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.wtd-form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.wtd-table-wrap {
+  max-width: 1000px;
+  margin: 0 auto 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+}
+.wtd-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 680px;
+}
+.wtd-table th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.wtd-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+.wtd-table tr:last-child td { border-bottom: none; }
+
+.wtd-date { font-weight: 600; color: var(--text); }
+.wtd-hours { font-weight: 700; color: var(--text); font-family: var(--font-head); }
+
+.wtd-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.wtd-badge.ok { background: #E1F2E4; color: #2E7D46; }
+.wtd-badge.warn { background: #FDF0DA; color: #B45309; }
+.wtd-badge.bad { background: #FBEAE9; color: #B3261E; }
+.wtd-badge.neutral { background: var(--placeholder-bg); color: var(--text-muted); }
+
+.wtd-actions {
+  display: flex;
+  gap: 8px;
+  white-space: nowrap;
+}
+.row-btn {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 2px;
+}
+.row-btn:hover { color: var(--accent-dark); text-decoration: underline; }
+.row-btn-danger { color: #B3261E; }
+.row-btn-danger:hover { color: #8C1D17; }
+
+.wtd-empty {
+  text-align: center;
+  padding: 32px 20px;
+  color: var(--text-muted);
+  font-size: 14.5px;
+}
+
+.wtd-weekly-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.wtd-weekly-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.wtd-weekly-list li:last-child { border-bottom: none; }
+.wtd-weekly-label { font-size: 14px; color: var(--text); font-weight: 500; }
+.wtd-weekly-hours { font-family: var(--font-head); font-weight: 700; font-size: 15px; }
+.wtd-weekly-hours.ok { color: #2E7D46; }
+.wtd-weekly-hours.bad { color: #B3261E; }
+
+.wtd-info h2, .wtd-weekly-card h2 {
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+.wtd-info ul {
+  margin: 0 0 16px;
+  padding-left: 20px;
+}
+.wtd-info li {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+.wtd-disclaimer {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+@media (max-width: 860px) {
+  .wtd-stats { grid-template-columns: repeat(2, 1fr); }
+  .wtd-form-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .wtd-card { padding: 18px; }
+  .wtd-toolbar { flex-direction: column; align-items: stretch; }
+  .wtd-toolbar-actions { justify-content: flex-start; }
+}

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Working Time Directive Calculator — Nick Williams</title>
+<meta name="description" content="Log your daily working hours and check them against the Road Transport Working Time rules — 48-hour weekly average, break entitlement and night work limits.">
+
+<!-- TODO: update once a custom domain is live -->
+<link rel="canonical" href="https://your-domain.example/tools/wtd-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nick Williams">
+<meta property="og:title" content="Working Time Directive Calculator">
+<meta property="og:description" content="Log your daily working hours and check them against the Road Transport Working Time rules — 48-hour weekly average, break entitlement and night work limits.">
+<meta property="og:url" content="https://your-domain.example/tools/wtd-calculator/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Working Time Directive Calculator">
+<meta name="twitter:description" content="Log your daily working hours and check them against the Road Transport Working Time rules — 48-hour weekly average, break entitlement and night work limits.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="wtd.css">
+<link rel="icon" type="image/svg+xml" href="../../assets/icons/favicon.svg">
+</head>
+<body>
+
+<header class="tool-topbar">
+  <div class="wrap tool-topbar-inner">
+    <a href="../../" class="brand">Nick Williams</a>
+    <span class="pill tool-live-pill"><span class="dot"></span>Stored only in this browser — nothing is sent anywhere</span>
+    <a class="btn btn-primary btn-small" href="../../#work">More tools →</a>
+  </div>
+</header>
+
+<main class="wrap wtd-shell">
+
+  <div class="wtd-intro">
+    <a href="../../#work" class="back-link">← Back to the portfolio</a>
+    <span class="eyebrow">Working Time Directive Calculator</span>
+    <h1>Check your hours against the Working Time rules</h1>
+    <p class="lede">Log each day's working time — not just driving, but loading, cleaning, paperwork, all of it — and this checks it against the Road Transport (Working Time) Regulations: a 48-hour weekly average over your reference period, break entitlement based on hours worked, and the 10-hour cap on any day that includes night work. Stored locally in this browser, exportable to CSV, with a JSON backup you can restore elsewhere.</p>
+  </div>
+
+  <div class="wtd-stats" id="wtd-stats">
+    <button type="button" class="wtd-stat" data-filter="all">
+      <span class="wtd-stat-value" id="stat-days">0</span>
+      <span class="wtd-stat-label">Days logged</span>
+    </button>
+    <button type="button" class="wtd-stat" data-filter="all">
+      <span class="wtd-stat-value" id="stat-this-week">0h</span>
+      <span class="wtd-stat-label">This week / 48h</span>
+    </button>
+    <button type="button" class="wtd-stat" data-filter="all">
+      <span class="wtd-stat-value" id="stat-average">—</span>
+      <span class="wtd-stat-label" id="stat-average-label">Reference average</span>
+    </button>
+    <button type="button" class="wtd-stat warn" data-filter="breakShortfall">
+      <span class="wtd-stat-value" id="stat-break-shortfall">0</span>
+      <span class="wtd-stat-label">Break shortfalls</span>
+    </button>
+    <button type="button" class="wtd-stat bad" data-filter="nightBreach">
+      <span class="wtd-stat-value" id="stat-night-breach">0</span>
+      <span class="wtd-stat-label">Night work breaches</span>
+    </button>
+  </div>
+
+  <div class="wtd-toolbar">
+    <div class="wtd-ref-period">
+      <label for="ref-period-select">Reference period</label>
+      <select id="ref-period-select">
+        <option value="17" selected>17 weeks (standard)</option>
+        <option value="26">26 weeks (workforce agreement)</option>
+      </select>
+    </div>
+    <div class="wtd-toolbar-actions">
+      <button type="button" class="btn btn-primary btn-small" id="add-day-btn">+ Add day</button>
+      <button type="button" class="btn btn-secondary btn-small" id="export-csv-btn">Export CSV</button>
+      <button type="button" class="btn btn-secondary btn-small" id="export-backup-btn">Export backup</button>
+      <button type="button" class="btn btn-secondary btn-small" id="import-backup-btn">Import backup</button>
+      <input type="file" id="import-file-input" accept="application/json" hidden>
+    </div>
+  </div>
+
+  <form class="wtd-card wtd-form" id="wtd-form" hidden>
+    <input type="hidden" id="entry-id">
+    <div class="wtd-form-grid">
+      <div class="wtd-field-group">
+        <label for="entry-date">Date</label>
+        <input type="date" id="entry-date" required>
+      </div>
+      <div class="wtd-field-group">
+        <label for="entry-start">Start time</label>
+        <input type="time" id="entry-start" required>
+      </div>
+      <div class="wtd-field-group">
+        <label for="entry-end">End time</label>
+        <input type="time" id="entry-end" required>
+      </div>
+      <div class="wtd-field-group">
+        <label for="entry-break">Break taken (minutes)</label>
+        <input type="number" id="entry-break" min="0" max="600" value="0">
+      </div>
+      <div class="wtd-field-group full">
+        <label for="entry-notes">Notes</label>
+        <input type="text" id="entry-notes" placeholder="Optional">
+      </div>
+    </div>
+    <div class="wtd-form-actions">
+      <button type="submit" class="btn btn-primary btn-small" id="save-entry-btn">Add day</button>
+      <button type="button" class="btn btn-secondary btn-small" id="cancel-edit-btn">Cancel</button>
+    </div>
+  </form>
+
+  <div class="wtd-table-wrap">
+    <table class="wtd-table" id="wtd-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Hours</th>
+          <th>Shift</th>
+          <th>Break</th>
+          <th>Night work</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="wtd-table-body"></tbody>
+    </table>
+    <p class="wtd-empty" id="wtd-empty" hidden></p>
+  </div>
+
+  <div class="wtd-card wtd-weekly-card">
+    <h2>Weekly totals</h2>
+    <ul class="wtd-weekly-list" id="wtd-weekly-list"></ul>
+    <p class="wtd-empty" id="wtd-weekly-empty">No weeks logged yet.</p>
+  </div>
+
+  <div class="wtd-card wtd-info">
+    <h2>How this works</h2>
+    <ul>
+      <li>Average working time must not exceed <strong>48 hours a week</strong>, averaged over your reference period (17 weeks standard, or 26 with a workforce agreement) — the average here only counts weeks you've actually logged within that window.</li>
+      <li>If your working time exceeds <strong>6 hours</strong> in a day, you're entitled to a break of at least <strong>30 minutes</strong>; over <strong>9 hours</strong>, at least <strong>45 minutes</strong> (breaks can be taken in blocks of 15 minutes or more).</li>
+      <li>On any day that includes <strong>night work</strong> (any time between midnight and 4am), working time is capped at <strong>10 hours</strong> unless a workforce agreement says otherwise.</li>
+      <li>"Working time" is broader than driving — it includes loading, unloading, cleaning, paperwork and other duties, but not breaks or genuine waiting/availability time.</li>
+    </ul>
+    <p class="wtd-disclaimer">This covers the core rules for mobile workers under the Road Transport (Working Time) Regulations 2005. Self-employed drivers are generally outside scope of these specific limits (though the tachograph driving-time rules still apply), and this doesn't account for every exemption or workforce agreement variation. Always check your own contract and your company's compliance guidance — this tool isn't a substitute for either.</p>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="copyright">© <span id="year">2026</span> Nick Williams. Built with Claude Code.</p>
+    <ul class="footer-links">
+      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#">X</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="mailto:hello@example.com">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script src="wtd.js"></script>
+</body>
+</html>
