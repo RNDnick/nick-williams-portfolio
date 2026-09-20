@@ -1,0 +1,222 @@
+/* IT Asset Tracker — extends the shared design tokens from css/style.css */
+
+.asset-shell {
+  padding: 40px 24px 96px;
+}
+
+.asset-intro {
+  max-width: 68ch;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+.asset-intro .back-link,
+.asset-intro .eyebrow {
+  display: block;
+}
+.asset-intro h1 {
+  font-size: 32px;
+  margin: 10px 0 14px;
+}
+.asset-intro .lede {
+  font-size: 15.5px;
+  margin: 0 auto;
+}
+
+.asset-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  max-width: 1000px;
+  margin: 0 auto 24px;
+}
+.asset-stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  text-align: center;
+}
+.asset-stat-value {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.asset-stat-label {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.asset-stat.ok .asset-stat-value { color: #2E7D46; }
+.asset-stat.warn .asset-stat-value { color: #B45309; }
+.asset-stat.bad .asset-stat-value { color: #B3261E; }
+
+.asset-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: 0 auto 20px;
+}
+.asset-search {
+  flex: 1 1 240px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+}
+.asset-search:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.asset-toolbar-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.asset-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  max-width: 1000px;
+  margin: 0 auto 24px;
+}
+
+.asset-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.asset-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.asset-field-group.full { grid-column: 1 / -1; }
+.asset-field-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.asset-field-group input,
+.asset-field-group select,
+.asset-field-group textarea {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+.asset-field-group textarea {
+  resize: vertical;
+  min-height: 64px;
+}
+.asset-field-group input:focus,
+.asset-field-group select:focus,
+.asset-field-group textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.asset-form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.asset-table-wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+}
+.asset-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+}
+.asset-table th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.asset-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+.asset-table tr:last-child td { border-bottom: none; }
+
+.asset-name { font-weight: 600; color: var(--text); }
+.asset-category { font-size: 12.5px; color: var(--text-muted); margin-top: 2px; }
+
+.warranty-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.warranty-badge.ok { background: #E1F2E4; color: #2E7D46; }
+.warranty-badge.warn { background: #FDF0DA; color: #B45309; }
+.warranty-badge.bad { background: #FBEAE9; color: #B3261E; }
+.warranty-badge.neutral { background: var(--placeholder-bg); color: var(--text-muted); }
+
+.asset-actions {
+  display: flex;
+  gap: 8px;
+  white-space: nowrap;
+}
+.row-btn {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 2px;
+}
+.row-btn:hover { color: var(--accent-dark); text-decoration: underline; }
+.row-btn-danger { color: #B3261E; }
+.row-btn-danger:hover { color: #8C1D17; }
+
+.asset-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-size: 14.5px;
+}
+
+@media (max-width: 860px) {
+  .asset-stats { grid-template-columns: repeat(2, 1fr); }
+  .asset-form-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .asset-card { padding: 18px; }
+  .asset-toolbar { flex-direction: column; align-items: stretch; }
+  .asset-toolbar-actions { justify-content: flex-start; }
+}

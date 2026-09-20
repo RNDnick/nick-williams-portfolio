@@ -25,7 +25,7 @@ at the end of a session.
 ## IT Ops tools
 - [x] Subnet & CIDR Calculator — live at tools/subnet-calculator/, client-side only (no data leaves the browser)
 - [x] Password Policy Generator — live at tools/password-policy-generator/, generates a copyable/downloadable plain-English policy doc, client-side only
-- [ ] IT Asset Tracker
+- [x] IT Asset Tracker — live at tools/asset-tracker/, data stored in the browser (localStorage) with CSV export and JSON backup/restore
 
 ## Driving tools
 - [x] Trailer Coupling Checklist (BLACK method) — live at rndnick.github.io/lgv-driver-app, needs a proper domain
