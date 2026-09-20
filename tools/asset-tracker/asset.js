@@ -28,6 +28,7 @@
   var statOk = document.getElementById('stat-ok');
   var statExpiring = document.getElementById('stat-expiring');
   var statExpired = document.getElementById('stat-expired');
+  var statDisposed = document.getElementById('stat-disposed');
   var statButtons = document.querySelectorAll('#asset-stats .asset-stat');
 
   var currentFilter = 'all';
@@ -145,17 +146,19 @@
   }
 
   function renderStats() {
-    var ok = 0, warn = 0, bad = 0;
+    var ok = 0, warn = 0, bad = 0, disposed = 0;
     assets.forEach(function (a) {
       var status = warrantyStatus(a);
       if (status.cls === 'ok') ok++;
       else if (status.cls === 'warn') warn++;
       else if (status.cls === 'bad') bad++;
+      else if (status.cls === 'disposed') disposed++;
     });
     statTotal.textContent = assets.length;
     statOk.textContent = ok;
     statExpiring.textContent = warn;
     statExpired.textContent = bad;
+    statDisposed.textContent = disposed;
 
     statButtons.forEach(function (btn) {
       btn.classList.toggle('active', btn.getAttribute('data-filter') === currentFilter);

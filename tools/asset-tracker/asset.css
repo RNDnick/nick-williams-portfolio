@@ -24,7 +24,7 @@
 
 .asset-stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 14px;
   max-width: 1000px;
   margin: 0 auto 24px;
@@ -62,6 +62,10 @@
   border-color: #B3261E;
   box-shadow: 0 0 0 2px rgba(179, 38, 30, 0.18);
 }
+.asset-stat.disposed.active {
+  border-color: var(--text-muted);
+  box-shadow: 0 0 0 2px rgba(107, 111, 118, 0.18);
+}
 .asset-stat-value {
   display: block;
   font-family: var(--font-head);
@@ -77,6 +81,7 @@
 .asset-stat.ok .asset-stat-value { color: #2E7D46; }
 .asset-stat.warn .asset-stat-value { color: #B45309; }
 .asset-stat.bad .asset-stat-value { color: #B3261E; }
+.asset-stat.disposed .asset-stat-value { color: var(--text-muted); }
 
 .asset-toolbar {
   display: flex;
