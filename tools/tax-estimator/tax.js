@@ -3,6 +3,7 @@
   var expensesInput = document.getElementById('expenses-input');
   var otherIncomeInput = document.getElementById('other-income-input');
   var regionSelect = document.getElementById('region-select');
+  var personalAllowanceInput = document.getElementById('personal-allowance-input');
 
   var profitLine = document.getElementById('tax-profit-line');
   var resultPersonalAllowance = document.getElementById('result-personal-allowance');
@@ -15,9 +16,7 @@
   var class2Note = document.getElementById('class2-note');
   var copyBtn = document.getElementById('copy-summary-btn');
 
-  var PERSONAL_ALLOWANCE = 12570;
   var TAPER_START = 100000;
-  var TAPER_END = 125140;
 
   var NI_LOWER_PROFITS_LIMIT = 12570;
   var NI_UPPER_PROFITS_LIMIT = 50270;
@@ -42,10 +41,14 @@
     ]
   };
 
-  function personalAllowanceFor(totalIncome) {
-    if (totalIncome > TAPER_END) return 0;
-    if (totalIncome > TAPER_START) return Math.max(0, PERSONAL_ALLOWANCE - (totalIncome - TAPER_START) / 2);
-    return PERSONAL_ALLOWANCE;
+  // The taper fully removes the allowance at TAPER_START + basePA*2 (£125,140
+  // when basePA is the standard £12,570) — derived from basePA so an edited
+  // allowance keeps a mathematically consistent taper range.
+  function personalAllowanceFor(totalIncome, basePA) {
+    var taperEnd = TAPER_START + basePA * 2;
+    if (totalIncome > taperEnd) return 0;
+    if (totalIncome > TAPER_START) return Math.max(0, basePA - (totalIncome - TAPER_START) / 2);
+    return basePA;
   }
 
   // Generic UK-style band calculator: bands are cumulative, absolute income
@@ -65,8 +68,8 @@
     return tax;
   }
 
-  function incomeTaxFor(totalIncome, regionKey) {
-    var pa = personalAllowanceFor(totalIncome);
+  function incomeTaxFor(totalIncome, regionKey, basePA) {
+    var pa = personalAllowanceFor(totalIncome, basePA);
     var bands = [{ threshold: pa, rate: 0 }].concat(REGIONS[regionKey]);
     return taxFromBands(totalIncome, bands);
   }
@@ -90,13 +93,14 @@
     var expenses = Math.max(0, Number(expensesInput.value) || 0);
     var otherIncome = Math.max(0, Number(otherIncomeInput.value) || 0);
     var region = REGIONS[regionSelect.value] ? regionSelect.value : 'rest-of-uk';
+    var basePA = Math.max(0, Number(personalAllowanceInput.value) || 0);
 
     var profit = Math.max(0, income - expenses);
     var totalForBanding = otherIncome + profit;
-    var personalAllowance = personalAllowanceFor(totalForBanding);
+    var personalAllowance = personalAllowanceFor(totalForBanding, basePA);
 
-    var taxOnTotal = incomeTaxFor(totalForBanding, region);
-    var taxOnOtherAlone = incomeTaxFor(otherIncome, region);
+    var taxOnTotal = incomeTaxFor(totalForBanding, region, basePA);
+    var taxOnOtherAlone = incomeTaxFor(otherIncome, region, basePA);
     var incomeTaxOnProfit = Math.max(0, taxOnTotal - taxOnOtherAlone);
 
     var ni = class4NiFor(profit);
@@ -107,6 +111,7 @@
 
     return {
       profit: profit,
+      basePA: basePA,
       personalAllowance: personalAllowance,
       incomeTaxOnProfit: incomeTaxOnProfit,
       ni: ni,
@@ -130,7 +135,7 @@
     profitLine.appendChild(value);
 
     resultPersonalAllowance.textContent = formatMoney(r.personalAllowance) +
-      (r.personalAllowance < PERSONAL_ALLOWANCE ? ' (reduced — income over £100k)' : '');
+      (r.personalAllowance < r.basePA ? ' (reduced — income over £100k)' : '');
     resultIncomeTax.textContent = formatMoney(r.incomeTaxOnProfit);
     resultNi.textContent = formatMoney(r.ni);
     resultTotal.textContent = formatMoney(r.total);
@@ -166,7 +171,7 @@
     return lines.join('\n') + '\n';
   }
 
-  [incomeInput, expensesInput, otherIncomeInput, regionSelect].forEach(function (el) {
+  [incomeInput, expensesInput, otherIncomeInput, regionSelect, personalAllowanceInput].forEach(function (el) {
     el.addEventListener('input', render);
     el.addEventListener('change', render);
   });
