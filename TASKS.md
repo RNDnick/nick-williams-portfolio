@@ -28,7 +28,7 @@ at the end of a session.
 - [x] IT Asset Tracker — live at tools/asset-tracker/, data stored in the browser (localStorage) with CSV export and JSON backup/restore
 
 ## Driving tools
-- [x] Trailer Coupling Checklist (BLACK method) — live at rndnick.github.io/lgv-driver-app, needs a proper domain
+- [x] Trailer Coupling Checklist (BLACK method) — live at https://safecouple.app, homepage card links there
 - [ ] Tachograph Break Calculator
 - [ ] Working Time Directive Calculator
 
