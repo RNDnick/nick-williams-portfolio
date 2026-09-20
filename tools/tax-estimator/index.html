@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self-Employed Tax Estimator — Nick Williams</title>
+<meta name="description" content="A quick, honest ballpark of your Income Tax and Class 4 National Insurance bill as a sole trader — before it lands.">
+
+<!-- TODO: update once a custom domain is live -->
+<link rel="canonical" href="https://your-domain.example/tools/tax-estimator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nick Williams">
+<meta property="og:title" content="Self-Employed Tax Estimator">
+<meta property="og:description" content="A quick, honest ballpark of your Income Tax and Class 4 National Insurance bill as a sole trader — before it lands.">
+<meta property="og:url" content="https://your-domain.example/tools/tax-estimator/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Self-Employed Tax Estimator">
+<meta name="twitter:description" content="A quick, honest ballpark of your Income Tax and Class 4 National Insurance bill as a sole trader — before it lands.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="tax.css">
+<link rel="icon" type="image/svg+xml" href="../../assets/icons/favicon.svg">
+</head>
+<body>
+
+<header class="tool-topbar">
+  <div class="wrap tool-topbar-inner">
+    <a href="../../" class="brand">Nick Williams</a>
+    <span class="pill tool-live-pill"><span class="dot"></span>Runs entirely in your browser — nothing is sent anywhere</span>
+    <a class="btn btn-primary btn-small" href="../../#work">More tools →</a>
+  </div>
+</header>
+
+<main class="wrap tax-shell">
+
+  <div class="tax-intro">
+    <a href="../../#work" class="back-link">← Back to the portfolio</a>
+    <span class="eyebrow">Self-Employed Tax Estimator</span>
+    <h1>A quick, honest ballpark before it lands</h1>
+    <p class="lede">Enter your self-employment income and expenses, and this estimates Income Tax and Class 4 National Insurance on your profit — including a rough amount to set aside each month. It's a ballpark for planning, not a substitute for your actual tax return.</p>
+  </div>
+
+  <div class="tax-card">
+    <form class="tax-form" id="tax-form">
+      <div class="tax-field-row">
+        <div class="tax-field-group">
+          <label for="income-input">Self-employment income</label>
+          <div class="tax-input-prefix">
+            <span>£</span>
+            <input type="number" id="income-input" min="0" step="1" value="40000">
+          </div>
+        </div>
+        <div class="tax-field-group">
+          <label for="expenses-input">Allowable expenses</label>
+          <div class="tax-input-prefix">
+            <span>£</span>
+            <input type="number" id="expenses-input" min="0" step="1" value="5000">
+          </div>
+        </div>
+      </div>
+
+      <div class="tax-field-row">
+        <div class="tax-field-group">
+          <label for="other-income-input">Other taxable income (optional)</label>
+          <div class="tax-input-prefix">
+            <span>£</span>
+            <input type="number" id="other-income-input" min="0" step="1" value="0">
+          </div>
+        </div>
+        <div class="tax-field-group">
+          <label for="region-select">Tax region</label>
+          <select id="region-select">
+            <option value="rest-of-uk" selected>England, Wales &amp; Northern Ireland</option>
+            <option value="scotland">Scotland</option>
+          </select>
+        </div>
+      </div>
+    </form>
+
+    <div class="tax-profit-line" id="tax-profit-line"></div>
+
+    <div class="tax-results">
+      <div class="tax-result-row">
+        <span>Income Tax on this profit</span>
+        <span id="result-income-tax">£0</span>
+      </div>
+      <div class="tax-result-row">
+        <span>Class 4 National Insurance</span>
+        <span id="result-ni">£0</span>
+      </div>
+      <div class="tax-result-row tax-result-total">
+        <span>Total tax &amp; NI due</span>
+        <span id="result-total">£0</span>
+      </div>
+      <div class="tax-result-row">
+        <span>Estimated take-home from this profit</span>
+        <span id="result-take-home">£0</span>
+      </div>
+      <div class="tax-result-row tax-result-muted">
+        <span>Effective rate on this profit</span>
+        <span id="result-effective-rate">0%</span>
+      </div>
+      <div class="tax-result-row tax-result-muted">
+        <span>Suggested amount to set aside per month</span>
+        <span id="result-monthly">£0</span>
+      </div>
+    </div>
+
+    <p class="tax-class2-note" id="class2-note" hidden></p>
+
+    <button type="button" class="btn btn-secondary btn-small" id="copy-summary-btn">Copy summary</button>
+  </div>
+
+  <div class="tax-card tax-info">
+    <h2>How this works</h2>
+    <ul>
+      <li>Your <strong>profit</strong> (income minus allowable expenses) is what Income Tax and Class 4 NI are actually charged on, not your raw income.</li>
+      <li>The Personal Allowance (£12,570) is tax-free, and tapers away above £100,000 income, reaching zero at £125,140 — this applies across <strong>all</strong> your taxable income, not just self-employment profit, which is why "other taxable income" is factored in.</li>
+      <li>Class 4 National Insurance is charged on profit between £12,570 and £50,270 at 6%, and 2% above that.</li>
+      <li>Class 2 NI is no longer compulsory above the Small Profits Threshold (£6,725) — you get a National Insurance credit automatically. Below that threshold, paying voluntary Class 2 (about £3.45/week, roughly £180/year) can protect your State Pension record.</li>
+    </ul>
+    <p class="tax-disclaimer">This is a simplified estimate using approximate current Income Tax bands and Class 4 NI rates. It doesn't account for Marriage Allowance, pension contributions, Gift Aid, student loan repayments, payments on account, or other reliefs that could change your actual bill — and rates change every tax year. Always check current figures at gov.uk (or gov.scot for Scotland) or speak to an accountant before relying on this for real tax planning.</p>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="copyright">© <span id="year">2026</span> Nick Williams. Built with Claude Code.</p>
+    <ul class="footer-links">
+      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#">X</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="mailto:hello@example.com">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script src="tax.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+/* Self-Employed Tax Estimator — extends the shared design tokens from css/style.css */
+
+.tax-shell {
+  padding: 40px 24px 96px;
+}
+
+.tax-intro {
+  max-width: 66ch;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+.tax-intro .back-link,
+.tax-intro .eyebrow {
+  display: block;
+}
+.tax-intro h1 {
+  font-size: 32px;
+  margin: 10px 0 14px;
+}
+.tax-intro .lede {
+  font-size: 15.5px;
+  margin: 0 auto;
+}
+
+.tax-card {
+  max-width: 640px;
+  margin: 0 auto 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+
+.tax-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.tax-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.tax-field-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.tax-field-group select {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 11px 12px;
+}
+.tax-field-group select:focus { outline: none; border-color: var(--accent); }
+
+.tax-input-prefix {
+  display: flex;
+  align-items: center;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding-left: 12px;
+  transition: border-color 0.15s ease;
+}
+.tax-input-prefix:focus-within { border-color: var(--accent); }
+.tax-input-prefix span { font-weight: 600; color: var(--text-muted); }
+.tax-input-prefix input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  background: none;
+  border: none;
+  padding: 11px 12px 11px 6px;
+}
+.tax-input-prefix input:focus { outline: none; }
+
+.tax-profit-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 16px;
+  background: var(--placeholder-bg);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.tax-profit-line .tax-profit-value {
+  font-family: var(--font-head);
+  font-size: 19px;
+}
+
+.tax-results {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+.tax-result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 9px 0;
+  font-size: 14.5px;
+  color: var(--text-secondary);
+}
+.tax-result-row span:last-child {
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: var(--text);
+}
+.tax-result-row.tax-result-total {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin: 6px 0;
+  padding: 12px 0;
+}
+.tax-result-row.tax-result-total span:last-child { font-size: 20px; color: var(--accent-dark); }
+.tax-result-row.tax-result-muted { color: var(--text-muted); font-size: 13.5px; }
+.tax-result-row.tax-result-muted span:last-child { font-size: 13.5px; color: var(--text-muted); font-weight: 600; }
+
+.tax-class2-note {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  background: var(--placeholder-bg);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin: 16px 0 0;
+}
+
+#copy-summary-btn { margin-top: 18px; }
+
+.tax-info h2 {
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+.tax-info ul {
+  margin: 0 0 16px;
+  padding-left: 20px;
+}
+.tax-info li {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+.tax-disclaimer {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .tax-card { padding: 20px; }
+  .tax-field-row { grid-template-columns: 1fr; }
+  .tax-profit-line { flex-direction: column; gap: 4px; }
+}

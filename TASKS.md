@@ -35,7 +35,7 @@ at the end of a session.
 ## Business tools
 - [x] Tradesman CRM — live demo on the portfolio embeds the real TradeFlow app (trade-crm repo); homepage card positions it as bespoke/paid, not free
 - [x] Job Quote Calculator — live at tools/job-quote-calculator/, live quote builder (line items, markup, optional VAT/deposit) with print-to-PDF and copy-as-text, one-shot (no saved history, by design — the Tradesman CRM covers record-keeping)
-- [ ] Self-Employed Tax Estimator
+- [x] Self-Employed Tax Estimator — live at tools/tax-estimator/, estimates Income Tax (rest-of-UK/Scotland bands) and Class 4 NI on profit, accounts for other taxable income when stacking bands, client-side only
 
 ## Ideas / not yet scoped
 - [ ] Car how-to videos (ties into the "Fixer" angle now that badge wording's confirmed)
