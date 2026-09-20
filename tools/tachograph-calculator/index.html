@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tachograph Break Calculator — Nick Williams</title>
+<meta name="description" content="Track your driving time live and know exactly when your next legal break is due — EU/GB drivers' hours rules, right in your browser.">
+
+<!-- TODO: update once a custom domain is live -->
+<link rel="canonical" href="https://your-domain.example/tools/tachograph-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nick Williams">
+<meta property="og:title" content="Tachograph Break Calculator">
+<meta property="og:description" content="Track your driving time live and know exactly when your next legal break is due — EU/GB drivers' hours rules, right in your browser.">
+<meta property="og:url" content="https://your-domain.example/tools/tachograph-calculator/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tachograph Break Calculator">
+<meta name="twitter:description" content="Track your driving time live and know exactly when your next legal break is due — EU/GB drivers' hours rules, right in your browser.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="tacho.css">
+<link rel="icon" type="image/svg+xml" href="../../assets/icons/favicon.svg">
+</head>
+<body>
+
+<header class="tool-topbar">
+  <div class="wrap tool-topbar-inner">
+    <a href="../../" class="brand">Nick Williams</a>
+    <span class="pill tool-live-pill"><span class="dot"></span>Stored only in this browser — nothing is sent anywhere</span>
+    <a class="btn btn-primary btn-small" href="../../#work">More tools →</a>
+  </div>
+</header>
+
+<main class="wrap tacho-shell">
+
+  <div class="tacho-intro">
+    <a href="../../#work" class="back-link">← Back to the portfolio</a>
+    <span class="eyebrow">Tachograph Break Calculator</span>
+    <h1>Know exactly when your next break is due</h1>
+    <p class="lede">Tap Start driving when you set off, and this keeps a live tally against the EU/GB drivers' hours rules — 4.5 hours of driving before a 45-minute break (or a 15+30 minute split), and a 9-hour daily driving limit. It keeps running if you refresh the page, and clears when you end your shift.</p>
+  </div>
+
+  <div class="tacho-status-card" id="tacho-status-card">
+    <span class="tacho-state-label" id="tacho-state-label">Not started</span>
+    <div class="tacho-main-value" id="tacho-main-value">0:00:00</div>
+    <p class="tacho-main-caption" id="tacho-main-caption">Tap Start driving to begin tracking.</p>
+    <p class="tacho-sub-message" id="tacho-sub-message" hidden></p>
+    <div class="tacho-actions">
+      <button type="button" class="btn btn-primary" id="start-driving-btn">Start driving</button>
+      <button type="button" class="btn btn-primary" id="take-break-btn" hidden>Take a break</button>
+      <button type="button" class="btn btn-primary" id="resume-driving-btn" hidden>Resume driving</button>
+      <button type="button" class="btn btn-secondary" id="end-shift-btn" hidden>End shift</button>
+    </div>
+  </div>
+
+  <div class="tacho-daily-card">
+    <div class="tacho-daily-row">
+      <span>Driving this shift</span>
+      <span id="tacho-daily-value">0h 0m</span>
+    </div>
+    <div class="tacho-daily-bar"><div class="tacho-daily-bar-fill" id="tacho-daily-bar-fill"></div></div>
+    <p class="tacho-daily-note" id="tacho-daily-note">Standard daily limit is 9 hours, extendable to 10 hours up to twice a week.</p>
+  </div>
+
+  <div class="tacho-log-card">
+    <h2>This shift's log</h2>
+    <ul class="tacho-log-list" id="tacho-log-list"></ul>
+    <p class="tacho-log-empty" id="tacho-log-empty">No activity yet — start driving to begin the log.</p>
+  </div>
+
+  <div class="tacho-info">
+    <h2>How this works</h2>
+    <ul>
+      <li>After a maximum of <strong>4.5 hours</strong> of driving, you need a break of at least <strong>45 minutes</strong> before driving again.</li>
+      <li>That break can be split: a first part of at least <strong>15 minutes</strong>, followed later by a second part of at least <strong>30 minutes</strong>, in that order.</li>
+      <li>A break under 15 minutes doesn't count towards either rule — the driving clock keeps running.</li>
+      <li>Standard daily driving is capped at <strong>9 hours</strong>, extendable to <strong>10 hours</strong> on up to two days a week.</li>
+    </ul>
+    <p class="tacho-disclaimer">This covers the core EU/GB drivers' hours rules for driving time and breaks. It doesn't account for every exemption (multi-manning, ferry/train crossings, AETR international journeys, weekly rest and the 90-hour/two-week limit) — always check your company's compliance guidance and your tachograph record for the full picture. This tool isn't a substitute for either.</p>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="copyright">© <span id="year">2026</span> Nick Williams. Built with Claude Code.</p>
+    <ul class="footer-links">
+      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#">X</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="mailto:hello@example.com">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script src="tacho.js"></script>
+</body>
+</html>

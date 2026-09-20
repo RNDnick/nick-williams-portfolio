@@ -29,7 +29,7 @@ at the end of a session.
 
 ## Driving tools
 - [x] Trailer Coupling Checklist (BLACK method) — live at https://safecouple.app, homepage card links there
-- [ ] Tachograph Break Calculator
+- [x] Tachograph Break Calculator — live at tools/tachograph-calculator/, live driving/break timer against EU/GB drivers' hours rules, state persisted in the browser
 - [ ] Working Time Directive Calculator
 
 ## Business tools

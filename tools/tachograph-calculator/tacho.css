@@ -1,0 +1,178 @@
+/* Tachograph Break Calculator — extends the shared design tokens from css/style.css */
+
+.tacho-shell {
+  padding: 40px 24px 96px;
+}
+
+.tacho-intro {
+  max-width: 68ch;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+.tacho-intro .back-link,
+.tacho-intro .eyebrow {
+  display: block;
+}
+.tacho-intro h1 {
+  font-size: 32px;
+  margin: 10px 0 14px;
+}
+.tacho-intro .lede {
+  font-size: 15.5px;
+  margin: 0 auto;
+}
+
+.tacho-status-card,
+.tacho-daily-card,
+.tacho-log-card,
+.tacho-info {
+  max-width: 640px;
+  margin: 0 auto 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+
+.tacho-status-card {
+  text-align: center;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.tacho-status-card.state-driving { border-color: #2E7D46; box-shadow: 0 0 0 2px rgba(46, 125, 70, 0.14); }
+.tacho-status-card.state-overdue { border-color: #B3261E; box-shadow: 0 0 0 2px rgba(179, 38, 30, 0.16); }
+.tacho-status-card.state-break { border-color: #B45309; box-shadow: 0 0 0 2px rgba(180, 83, 9, 0.14); }
+
+.tacho-state-label {
+  display: inline-block;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.state-driving .tacho-state-label { color: #2E7D46; }
+.state-overdue .tacho-state-label { color: #B3261E; }
+.state-break .tacho-state-label { color: #B45309; }
+
+.tacho-main-value {
+  font-family: var(--font-head);
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.state-overdue .tacho-main-value { color: #B3261E; }
+
+.tacho-main-caption {
+  font-size: 14.5px;
+  color: var(--text-muted);
+  margin: 8px 0 0;
+}
+
+.tacho-sub-message {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  background: var(--placeholder-bg);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin: 16px 0 0;
+}
+
+.tacho-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.tacho-daily-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.tacho-daily-row span:last-child {
+  font-family: var(--font-head);
+  font-size: 18px;
+}
+.tacho-daily-bar {
+  height: 8px;
+  background: var(--placeholder-bg);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.tacho-daily-bar-fill {
+  height: 100%;
+  background: #2E7D46;
+  border-radius: 999px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+.tacho-daily-bar-fill.warn { background: #B45309; }
+.tacho-daily-bar-fill.bad { background: #B3261E; }
+.tacho-daily-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 10px 0 0;
+}
+
+.tacho-log-card h2,
+.tacho-info h2 {
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+.tacho-log-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tacho-log-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.tacho-log-list li:last-child { border-bottom: none; }
+.tacho-log-type {
+  font-weight: 600;
+  color: var(--text);
+}
+.tacho-log-type.driving::before { content: '▸ '; color: #2E7D46; }
+.tacho-log-type.break::before { content: '▸ '; color: #B45309; }
+.tacho-log-time { color: var(--text-muted); }
+.tacho-log-duration { font-weight: 600; color: var(--text); white-space: nowrap; }
+.tacho-log-empty { color: var(--text-muted); font-size: 14px; margin: 0; }
+
+.tacho-info ul {
+  margin: 0 0 16px;
+  padding-left: 20px;
+}
+.tacho-info li {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+.tacho-disclaimer {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .tacho-status-card,
+  .tacho-daily-card,
+  .tacho-log-card,
+  .tacho-info {
+    padding: 20px;
+  }
+  .tacho-main-value { font-size: 40px; }
+  .tacho-actions { flex-direction: column; }
+  .tacho-actions .btn { width: 100%; }
+}
