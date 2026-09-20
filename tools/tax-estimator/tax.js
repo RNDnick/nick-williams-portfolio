@@ -5,6 +5,7 @@
   var regionSelect = document.getElementById('region-select');
 
   var profitLine = document.getElementById('tax-profit-line');
+  var resultPersonalAllowance = document.getElementById('result-personal-allowance');
   var resultIncomeTax = document.getElementById('result-income-tax');
   var resultNi = document.getElementById('result-ni');
   var resultTotal = document.getElementById('result-total');
@@ -92,6 +93,7 @@
 
     var profit = Math.max(0, income - expenses);
     var totalForBanding = otherIncome + profit;
+    var personalAllowance = personalAllowanceFor(totalForBanding);
 
     var taxOnTotal = incomeTaxFor(totalForBanding, region);
     var taxOnOtherAlone = incomeTaxFor(otherIncome, region);
@@ -105,6 +107,7 @@
 
     return {
       profit: profit,
+      personalAllowance: personalAllowance,
       incomeTaxOnProfit: incomeTaxOnProfit,
       ni: ni,
       total: total,
@@ -126,6 +129,8 @@
     profitLine.appendChild(label);
     profitLine.appendChild(value);
 
+    resultPersonalAllowance.textContent = formatMoney(r.personalAllowance) +
+      (r.personalAllowance < PERSONAL_ALLOWANCE ? ' (reduced — income over £100k)' : '');
     resultIncomeTax.textContent = formatMoney(r.incomeTaxOnProfit);
     resultNi.textContent = formatMoney(r.ni);
     resultTotal.textContent = formatMoney(r.total);
@@ -148,6 +153,7 @@
       'Self-Employed Tax Estimate (' + regionLabel + ')',
       '',
       'Profit: ' + formatMoney(r.profit),
+      'Personal Allowance (tax-free): ' + formatMoney(r.personalAllowance),
       'Income Tax on this profit: ' + formatMoney(r.incomeTaxOnProfit),
       'Class 4 National Insurance: ' + formatMoney(r.ni),
       'Total tax & NI due: ' + formatMoney(r.total),
