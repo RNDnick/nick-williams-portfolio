@@ -209,7 +209,8 @@
       tdWarranty.appendChild(badge);
 
       var tdActions = document.createElement('td');
-      tdActions.className = 'asset-actions';
+      var actionsRow = document.createElement('div');
+      actionsRow.className = 'asset-actions';
       var editBtn = document.createElement('button');
       editBtn.type = 'button';
       editBtn.className = 'row-btn';
@@ -220,8 +221,9 @@
       delBtn.className = 'row-btn row-btn-danger';
       delBtn.textContent = 'Delete';
       delBtn.addEventListener('click', function () { deleteAsset(a.id); });
-      tdActions.appendChild(editBtn);
-      tdActions.appendChild(delBtn);
+      actionsRow.appendChild(editBtn);
+      actionsRow.appendChild(delBtn);
+      tdActions.appendChild(actionsRow);
 
       tr.appendChild(tdName);
       tr.appendChild(tdSerial);
