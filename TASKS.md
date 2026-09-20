@@ -34,7 +34,7 @@ at the end of a session.
 
 ## Business tools
 - [x] Tradesman CRM — live demo on the portfolio embeds the real TradeFlow app (trade-crm repo); homepage card positions it as bespoke/paid, not free
-- [ ] Job Quote Calculator
+- [x] Job Quote Calculator — live at tools/job-quote-calculator/, live quote builder (line items, markup, optional VAT/deposit) with print-to-PDF and copy-as-text, one-shot (no saved history, by design — the Tradesman CRM covers record-keeping)
 - [ ] Self-Employed Tax Estimator
 
 ## Ideas / not yet scoped

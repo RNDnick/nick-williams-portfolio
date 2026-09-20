@@ -1,0 +1,322 @@
+/* Job Quote Calculator — extends the shared design tokens from css/style.css */
+
+.quote-shell {
+  padding: 40px 24px 96px;
+}
+
+.quote-intro {
+  max-width: 70ch;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+.quote-intro .back-link,
+.quote-intro .eyebrow {
+  display: block;
+}
+.quote-intro h1 {
+  font-size: 32px;
+  margin: 10px 0 14px;
+}
+.quote-intro .lede {
+  font-size: 15.5px;
+  margin: 0 auto;
+}
+
+.quote-layout {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 20px;
+  align-items: start;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.quote-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+/* Form */
+.quote-form { display: flex; flex-direction: column; gap: 18px; }
+
+.quote-fieldset {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 16px 18px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.quote-fieldset legend {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0 4px;
+}
+
+.quote-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.quote-field-row.cols-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.quote-field-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.quote-field-group input,
+.quote-field-group textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+.quote-field-group textarea {
+  resize: vertical;
+  min-height: 56px;
+}
+.quote-field-group input:focus,
+.quote-field-group textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.quote-check {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.quote-check input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Line items */
+.quote-lines-head {
+  display: grid;
+  grid-template-columns: 1fr 56px 90px 90px 28px;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  padding: 0 2px;
+}
+.quote-line-row {
+  display: grid;
+  grid-template-columns: 1fr 56px 90px 90px 28px;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+}
+.quote-line-row input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 9px;
+}
+.quote-line-row input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.quote-line-amount {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+  text-align: right;
+  padding-right: 4px;
+}
+.quote-line-remove {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px;
+}
+.quote-line-remove:hover { color: #B3261E; }
+
+#add-line-btn { align-self: flex-start; margin-top: 4px; }
+
+/* Preview */
+.quote-preview-card { min-width: 0; }
+
+.quote-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+.quote-preview-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.quote-preview-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.quote-preview {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+}
+
+.qp-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--text);
+}
+.qp-business-name {
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.qp-business-contact { font-size: 13.5px; color: var(--text-muted); }
+.qp-meta { text-align: right; font-size: 13.5px; }
+.qp-meta div { margin-bottom: 2px; }
+.qp-meta .qp-title {
+  font-family: var(--font-head);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.qp-client { margin-bottom: 22px; }
+.qp-client-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.qp-client-name { font-weight: 600; color: var(--text); font-size: 15.5px; margin-bottom: 4px; }
+.qp-job-desc { white-space: pre-wrap; }
+
+.qp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+.qp-table th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  padding: 8px 6px;
+  border-bottom: 1px solid var(--border);
+}
+.qp-table th:last-child, .qp-table td:last-child { text-align: right; }
+.qp-table td {
+  padding: 9px 6px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.qp-totals {
+  max-width: 320px;
+  margin-left: auto;
+}
+.qp-totals-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 14.5px;
+}
+.qp-totals-row.qp-total {
+  border-top: 2px solid var(--text);
+  margin-top: 6px;
+  padding-top: 12px;
+  font-family: var(--font-head);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+.qp-totals-row.qp-deposit { color: var(--text-muted); font-size: 13.5px; }
+.qp-totals-row.print-only { display: none; }
+
+.qp-footer {
+  margin-top: 26px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: pre-wrap;
+}
+
+@media (max-width: 860px) {
+  .quote-layout { grid-template-columns: 1fr; }
+  .quote-lines-head { display: none; }
+  .quote-line-row {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "desc desc" "qty price" "amount remove";
+    row-gap: 6px;
+  }
+  .quote-line-row input:nth-child(1) { grid-area: desc; }
+  .quote-line-row input:nth-child(2) { grid-area: qty; }
+  .quote-line-row input:nth-child(3) { grid-area: price; }
+  .quote-line-row .quote-line-amount { grid-area: amount; }
+  .quote-line-row .quote-line-remove { grid-area: remove; justify-self: end; }
+}
+
+@media (max-width: 480px) {
+  .quote-card { padding: 18px; }
+  .quote-field-row,
+  .quote-field-row.cols-3 { grid-template-columns: 1fr; }
+  .qp-header { flex-direction: column; }
+  .qp-meta { text-align: left; }
+}
+
+/* Print — show only the quote itself */
+@media print {
+  .no-print { display: none !important; }
+  .qp-totals-row.print-only { display: flex !important; }
+  body, .quote-shell { background: #fff !important; padding: 0 !important; }
+  .quote-layout { display: block; max-width: none; }
+  .quote-card.quote-preview-card {
+    border: none;
+    padding: 0;
+    box-shadow: none;
+  }
+}
