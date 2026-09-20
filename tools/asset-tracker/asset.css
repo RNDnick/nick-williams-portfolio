@@ -209,6 +209,7 @@
 .warranty-badge.warn { background: #FDF0DA; color: #B45309; }
 .warranty-badge.bad { background: #FBEAE9; color: #B3261E; }
 .warranty-badge.neutral { background: var(--placeholder-bg); color: var(--text-muted); }
+.warranty-badge.disposed { background: var(--placeholder-bg); color: var(--text-muted); font-style: italic; }
 
 .asset-actions {
   display: flex;

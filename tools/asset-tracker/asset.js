@@ -16,6 +16,7 @@
   var assignedInput = document.getElementById('asset-assigned');
   var purchaseInput = document.getElementById('asset-purchase-date');
   var warrantyInput = document.getElementById('asset-warranty-date');
+  var disposalInput = document.getElementById('asset-disposal-date');
   var notesInput = document.getElementById('asset-notes');
   var saveBtn = document.getElementById('save-asset-btn');
   var cancelBtn = document.getElementById('cancel-edit-btn');
@@ -40,7 +41,7 @@
     { id: 'example-6', name: 'Example — Netgear GS724T Switch', category: 'Network equipment', serial: 'NGGS724-EXAMPLE', assignedTo: 'Server room', purchaseDate: '2022-11-01', warrantyExpiry: '', notes: '' },
     { id: 'example-7', name: 'Example — Canon imageCLASS MF445dw', category: 'Printer', serial: 'CANMF445-EXAMPLE', assignedTo: 'Accounts office', purchaseDate: '2023-10-01', warrantyExpiry: '2026-10-01', notes: '' },
     { id: 'example-8', name: 'Example — Lenovo ThinkPad X1 Carbon', category: 'Laptop', serial: 'LNX1C-EXAMPLE', assignedTo: 'Managing Director', purchaseDate: '2025-01-15', warrantyExpiry: '2028-01-15', notes: '' },
-    { id: 'example-9', name: 'Example — Samsung Galaxy Tab A8', category: 'Phone / tablet', serial: 'SGTA8-EXAMPLE', assignedTo: 'Warehouse — stock checks', purchaseDate: '2023-07-01', warrantyExpiry: '2025-07-01', notes: '' },
+    { id: 'example-9', name: 'Example — Samsung Galaxy Tab A8', category: 'Phone / tablet', serial: 'SGTA8-EXAMPLE', assignedTo: 'Warehouse — stock checks', purchaseDate: '2023-07-01', warrantyExpiry: '2025-07-01', disposalDate: '2025-08-15', notes: 'Cracked screen beyond repair — recycled via the office WEEE collection.' },
     { id: 'example-10', name: 'Example — Ubiquiti UniFi Dream Machine', category: 'Network equipment', serial: 'UBUDM-EXAMPLE', assignedTo: 'Comms cupboard', purchaseDate: '2024-08-01', warrantyExpiry: '2026-08-01', notes: '' },
     { id: 'example-11', name: 'Example — Apple iMac 24"', category: 'Desktop', serial: 'IMAC24-EXAMPLE', assignedTo: 'Marketing — Sam', purchaseDate: '2024-03-01', warrantyExpiry: '2027-03-01', notes: '' },
     { id: 'example-12', name: 'Example — Yale CCTV NVR', category: 'Other', serial: 'YALENVR-EXAMPLE', assignedTo: 'Warehouse', purchaseDate: '2023-04-01', warrantyExpiry: '2025-04-01', notes: '' }
@@ -93,6 +94,9 @@
   }
 
   function warrantyStatus(asset) {
+    if (asset.disposalDate) {
+      return { label: 'Disposed ' + formatDate(asset.disposalDate), cls: 'disposed', sortKey: Infinity };
+    }
     var days = daysUntil(asset.warrantyExpiry);
     if (days === null) return { label: 'No warranty date', cls: 'neutral', sortKey: Infinity };
     if (days < 0) {
@@ -124,6 +128,7 @@
     assignedInput.value = asset.assignedTo || '';
     purchaseInput.value = asset.purchaseDate || '';
     warrantyInput.value = asset.warrantyExpiry || '';
+    disposalInput.value = asset.disposalDate || '';
     notesInput.value = asset.notes || '';
     saveBtn.textContent = 'Update asset';
     form.hidden = false;
@@ -267,10 +272,10 @@
   }
 
   function exportCsv() {
-    var headers = ['Name', 'Category', 'Serial number', 'Assigned to', 'Purchase date', 'Warranty expiry', 'Notes'];
+    var headers = ['Name', 'Category', 'Serial number', 'Assigned to', 'Purchase date', 'Warranty expiry', 'Disposal date', 'Notes'];
     var lines = [headers.join(',')];
     assets.forEach(function (a) {
-      lines.push([a.name, a.category, a.serial, a.assignedTo, a.purchaseDate, a.warrantyExpiry, a.notes].map(csvEscape).join(','));
+      lines.push([a.name, a.category, a.serial, a.assignedTo, a.purchaseDate, a.warrantyExpiry, a.disposalDate, a.notes].map(csvEscape).join(','));
     });
     downloadFile(lines.join('\n') + '\n', 'asset-tracker-export.csv', 'text/csv');
   }
@@ -291,6 +296,7 @@
           assignedTo: typeof x.assignedTo === 'string' ? x.assignedTo : '',
           purchaseDate: typeof x.purchaseDate === 'string' ? x.purchaseDate : '',
           warrantyExpiry: typeof x.warrantyExpiry === 'string' ? x.warrantyExpiry : '',
+          disposalDate: typeof x.disposalDate === 'string' ? x.disposalDate : '',
           notes: typeof x.notes === 'string' ? x.notes : ''
         };
       });
@@ -335,6 +341,7 @@
       assignedTo: assignedInput.value.trim(),
       purchaseDate: purchaseInput.value,
       warrantyExpiry: warrantyInput.value,
+      disposalDate: disposalInput.value,
       notes: notesInput.value.trim()
     };
 
