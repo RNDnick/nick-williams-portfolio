@@ -30,11 +30,37 @@
   margin: 0 auto 24px;
 }
 .asset-stat {
+  display: block;
+  width: 100%;
+  font: inherit;
+  color: inherit;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 16px 18px;
   text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+.asset-stat:hover {
+  border-color: var(--text-muted);
+  transform: translateY(-1px);
+}
+.asset-stat.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(194, 84, 10, 0.18);
+}
+.asset-stat.ok.active {
+  border-color: #2E7D46;
+  box-shadow: 0 0 0 2px rgba(46, 125, 70, 0.18);
+}
+.asset-stat.warn.active {
+  border-color: #B45309;
+  box-shadow: 0 0 0 2px rgba(180, 83, 9, 0.18);
+}
+.asset-stat.bad.active {
+  border-color: #B3261E;
+  box-shadow: 0 0 0 2px rgba(179, 38, 30, 0.18);
 }
 .asset-stat-value {
   display: block;

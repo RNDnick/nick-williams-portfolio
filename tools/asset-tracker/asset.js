@@ -27,6 +27,9 @@
   var statOk = document.getElementById('stat-ok');
   var statExpiring = document.getElementById('stat-expiring');
   var statExpired = document.getElementById('stat-expired');
+  var statButtons = document.querySelectorAll('#asset-stats .asset-stat');
+
+  var currentFilter = 'all';
 
   var exampleAssets = [
     { id: 'example-1', name: 'Example — Dell Latitude 5420', category: 'Laptop', serial: 'DL5420-EXAMPLE', assignedTo: 'Reception desk', purchaseDate: '2023-03-01', warrantyExpiry: '2026-11-01', notes: 'Delete me once you’ve added your own kit.' },
@@ -148,15 +151,23 @@
     statOk.textContent = ok;
     statExpiring.textContent = warn;
     statExpired.textContent = bad;
+
+    statButtons.forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-filter') === currentFilter);
+    });
   }
 
   function renderTable() {
     var query = searchInput.value.trim().toLowerCase();
     var filtered = assets.filter(function (a) {
-      if (!query) return true;
-      return (a.name || '').toLowerCase().indexOf(query) !== -1 ||
-        (a.serial || '').toLowerCase().indexOf(query) !== -1 ||
-        (a.assignedTo || '').toLowerCase().indexOf(query) !== -1;
+      if (query) {
+        var matches = (a.name || '').toLowerCase().indexOf(query) !== -1 ||
+          (a.serial || '').toLowerCase().indexOf(query) !== -1 ||
+          (a.assignedTo || '').toLowerCase().indexOf(query) !== -1;
+        if (!matches) return false;
+      }
+      if (currentFilter !== 'all' && warrantyStatus(a).cls !== currentFilter) return false;
+      return true;
     });
 
     var rows = filtered.map(function (a) {
@@ -219,10 +230,15 @@
       emptyEl.hidden = false;
       emptyEl.textContent = assets.length === 0
         ? 'No assets yet — add your first one above.'
-        : 'No assets match your search.';
+        : 'No assets match your search or filter.';
     } else {
       emptyEl.hidden = true;
     }
+  }
+
+  function setFilter(filter) {
+    currentFilter = (currentFilter === filter) ? 'all' : filter;
+    render();
   }
 
   function render() {
@@ -336,6 +352,10 @@
   cancelBtn.addEventListener('click', function () {
     form.hidden = true;
     resetForm();
+  });
+
+  statButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () { setFilter(btn.getAttribute('data-filter')); });
   });
 
   addBtn.addEventListener('click', openFormForAdd);

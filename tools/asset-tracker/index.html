@@ -44,23 +44,23 @@
     <p class="lede">A lightweight asset and warranty log for teams too small to justify proper ITAM software. Add your hardware once and see what's covered, what's expiring soon, and what's already out of warranty. Everything is stored locally in this browser — export to CSV for reporting, or take a JSON backup to move your list to another device.</p>
   </div>
 
-  <div class="asset-stats">
-    <div class="asset-stat">
+  <div class="asset-stats" id="asset-stats">
+    <button type="button" class="asset-stat" data-filter="all">
       <span class="asset-stat-value" id="stat-total">0</span>
       <span class="asset-stat-label">Total assets</span>
-    </div>
-    <div class="asset-stat ok">
+    </button>
+    <button type="button" class="asset-stat ok" data-filter="ok">
       <span class="asset-stat-value" id="stat-ok">0</span>
       <span class="asset-stat-label">Under warranty</span>
-    </div>
-    <div class="asset-stat warn">
+    </button>
+    <button type="button" class="asset-stat warn" data-filter="warn">
       <span class="asset-stat-value" id="stat-expiring">0</span>
       <span class="asset-stat-label">Expiring within 30 days</span>
-    </div>
-    <div class="asset-stat bad">
+    </button>
+    <button type="button" class="asset-stat bad" data-filter="bad">
       <span class="asset-stat-value" id="stat-expired">0</span>
       <span class="asset-stat-label">Expired</span>
-    </div>
+    </button>
   </div>
 
   <div class="asset-toolbar">
