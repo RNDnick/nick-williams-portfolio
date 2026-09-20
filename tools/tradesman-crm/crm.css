@@ -1,26 +1,6 @@
-/* Tradesman CRM demo — extends the shared design tokens from css/style.css */
-
-.crm-topbar {
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-}
-.crm-topbar-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  height: 72px;
-  flex-wrap: wrap;
-}
-.crm-live-pill {
-  margin: 0;
-  order: 3;
-  flex-basis: 100%;
-  justify-content: center;
-}
-@media (min-width: 720px) {
-  .crm-live-pill { flex-basis: auto; order: 0; }
-}
+/* Tradesman CRM demo — extends the shared design tokens from css/style.css
+   (the .tool-topbar-* classes for the header live in css/style.css, shared
+   with the other standalone tool pages) */
 
 .crm-shell {
   padding: 40px 24px 96px;

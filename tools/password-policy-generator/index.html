@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Password Policy Generator — Nick Williams</title>
+<meta name="description" content="Generate a clear, practical password policy for your organisation — requirements, expiry, lockout and MFA, ready to copy or download in under a minute.">
+
+<!-- TODO: update once a custom domain is live -->
+<link rel="canonical" href="https://your-domain.example/tools/password-policy-generator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nick Williams">
+<meta property="og:title" content="Password Policy Generator">
+<meta property="og:description" content="Generate a clear, practical password policy for your organisation — requirements, expiry, lockout and MFA, ready to copy or download in under a minute.">
+<meta property="og:url" content="https://your-domain.example/tools/password-policy-generator/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Password Policy Generator">
+<meta name="twitter:description" content="Generate a clear, practical password policy for your organisation — requirements, expiry, lockout and MFA, ready to copy or download in under a minute.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="policy.css">
+<link rel="icon" type="image/svg+xml" href="../../assets/icons/favicon.svg">
+</head>
+<body>
+
+<header class="tool-topbar">
+  <div class="wrap tool-topbar-inner">
+    <a href="../../" class="brand">Nick Williams</a>
+    <span class="pill tool-live-pill"><span class="dot"></span>Runs entirely in your browser — nothing is sent anywhere</span>
+    <a class="btn btn-primary btn-small" href="../../#work">More tools →</a>
+  </div>
+</header>
+
+<main class="wrap policy-shell">
+
+  <div class="policy-intro">
+    <a href="../../#work" class="back-link">← Back to the portfolio</a>
+    <span class="eyebrow">Password Policy Generator</span>
+    <h1>Write a password policy in under a minute</h1>
+    <p class="lede">Set your requirements on the left and get a plain-English policy document on the right, ready to copy or download. It's a starting template based on current best-practice guidance, not a substitute for legal or compliance advice specific to your organisation.</p>
+  </div>
+
+  <div class="policy-layout">
+
+    <form class="policy-card policy-form" id="policy-form">
+
+      <div class="policy-field-group">
+        <label for="org-name">Organisation name</label>
+        <input type="text" id="org-name" placeholder="Your Organisation" autocomplete="off">
+      </div>
+
+      <fieldset class="policy-fieldset">
+        <legend>Password requirements</legend>
+
+        <div class="policy-field-group">
+          <label for="min-length">Minimum length</label>
+          <input type="number" id="min-length" min="8" max="64" value="14">
+        </div>
+
+        <div class="policy-checks">
+          <label class="policy-check"><input type="checkbox" id="require-upper" checked> Uppercase letter required</label>
+          <label class="policy-check"><input type="checkbox" id="require-lower" checked> Lowercase letter required</label>
+          <label class="policy-check"><input type="checkbox" id="require-number" checked> Number required</label>
+          <label class="policy-check"><input type="checkbox" id="require-symbol" checked> Special character required</label>
+          <label class="policy-check"><input type="checkbox" id="encourage-passphrase" checked> Allow passphrases as an alternative</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="policy-fieldset">
+        <legend>Expiry &amp; reuse</legend>
+
+        <div class="policy-field-group">
+          <label for="expiry">Password expiry</label>
+          <select id="expiry">
+            <option value="never" selected>Never (NIST-aligned)</option>
+            <option value="90">Every 90 days</option>
+            <option value="180">Every 180 days</option>
+            <option value="365">Every 365 days</option>
+          </select>
+        </div>
+
+        <div class="policy-field-group">
+          <label for="history-count">Previous passwords remembered</label>
+          <input type="number" id="history-count" min="0" max="24" value="5">
+        </div>
+      </fieldset>
+
+      <fieldset class="policy-fieldset">
+        <legend>Account protection</legend>
+
+        <div class="policy-field-group policy-field-row">
+          <div>
+            <label for="lockout-threshold">Failed attempts before lockout</label>
+            <input type="number" id="lockout-threshold" min="1" max="20" value="5">
+          </div>
+          <div>
+            <label for="lockout-duration">Lockout duration (minutes)</label>
+            <input type="number" id="lockout-duration" min="1" max="1440" value="30">
+          </div>
+        </div>
+
+        <div class="policy-checks">
+          <label class="policy-check"><input type="checkbox" id="require-mfa" checked> Require multi-factor authentication (MFA)</label>
+          <label class="policy-check"><input type="checkbox" id="recommend-manager" checked> Recommend a password manager</label>
+        </div>
+      </fieldset>
+
+    </form>
+
+    <div class="policy-card policy-preview-card">
+      <div class="policy-preview-header">
+        <span class="policy-preview-label">Generated policy</span>
+        <div class="policy-preview-actions">
+          <button type="button" class="copy-btn" id="copy-policy-btn">Copy</button>
+          <button type="button" class="copy-btn" id="download-policy-btn">Download .txt</button>
+        </div>
+      </div>
+      <div class="policy-preview" id="policy-preview"></div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="copyright">© <span id="year">2026</span> Nick Williams. Built with Claude Code.</p>
+    <ul class="footer-links">
+      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#">X</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="mailto:hello@example.com">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script src="policy.js"></script>
+</body>
+</html>

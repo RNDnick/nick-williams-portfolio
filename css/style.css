@@ -163,6 +163,31 @@ p { margin: 0; }
 .nav-toggle svg { width: 20px; height: 20px; color: var(--text); }
 
 /* ==========================================================================
+   Standalone tool page topbar (subnet calculator, password policy, etc.)
+   ========================================================================== */
+.tool-topbar {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.tool-topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 72px;
+  flex-wrap: wrap;
+}
+.tool-live-pill {
+  margin: 0;
+  order: 3;
+  flex-basis: 100%;
+  justify-content: center;
+}
+@media (min-width: 720px) {
+  .tool-live-pill { flex-basis: auto; order: 0; }
+}
+
+/* ==========================================================================
    Hero
    ========================================================================== */
 .hero {

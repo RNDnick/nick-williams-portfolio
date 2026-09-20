@@ -1,0 +1,200 @@
+/* Password Policy Generator — extends the shared design tokens from css/style.css */
+
+.policy-shell {
+  padding: 40px 24px 96px;
+}
+
+.policy-intro {
+  max-width: 68ch;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+.policy-intro .back-link,
+.policy-intro .eyebrow {
+  display: block;
+}
+.policy-intro h1 {
+  font-size: 32px;
+  margin: 10px 0 14px;
+}
+.policy-intro .lede {
+  font-size: 15.5px;
+  margin: 0 auto;
+}
+
+.policy-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 20px;
+  align-items: start;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.policy-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+/* Form */
+.policy-form { display: flex; flex-direction: column; gap: 20px; }
+
+.policy-fieldset {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 16px 4px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.policy-fieldset legend {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0 4px;
+}
+
+.policy-field-group label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.policy-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.policy-field-group input[type="text"],
+.policy-field-group input[type="number"],
+.policy-field-group select {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  transition: border-color 0.15s ease;
+}
+.policy-field-group input:focus,
+.policy-field-group select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.policy-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 14px;
+}
+.policy-check {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.policy-check input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Preview */
+.policy-preview-card { min-width: 0; }
+
+.policy-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+.policy-preview-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.policy-preview-actions { display: flex; gap: 8px; }
+
+.copy-btn {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.copy-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.policy-preview {
+  max-height: 720px;
+  overflow-y: auto;
+}
+
+.policy-title {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+.policy-meta {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+.policy-h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 22px 0 8px;
+}
+.policy-h2:first-of-type { margin-top: 0; }
+.policy-p {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+.policy-ul {
+  margin: 0 0 10px;
+  padding-left: 20px;
+}
+.policy-ul li {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+@media (max-width: 860px) {
+  .policy-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .policy-card { padding: 18px; }
+  .policy-field-row { grid-template-columns: 1fr; }
+  .policy-preview-header { flex-direction: column; align-items: flex-start; }
+}
